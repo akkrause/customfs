@@ -3,7 +3,7 @@
         .print-format {
             width: 3.5in;
             max-height: 5.5in;
-			padding: 0.25in;
+			padding: 0.25in 0.125in;
         }
     }
 
@@ -14,18 +14,14 @@
 
 	.title-right {
 		font-size: 0.125in;
-		width: 1in; 
+		width: 0.75in; 
 		text-align: right;
-		height: 0.225in;
-		line-height: 0.125in;
 		padding: 0.1 0 0 0;
 	}
 
 	.data-large {
-		font-size: 0.35in;
-		font-weight: 900;
-		line-height: 0.3in;
-		height: 0.38in;
+		font-size: 0.27in;
+		font-family: Arial Black, sans-serif;
 		width: 3in;
 		overflow: hidden;
 		white-space: nowrap;
@@ -34,9 +30,7 @@
 
 	.data-normal {
 		font-size: 0.125in;
-		font-weight: 900;
-		line-height: 0.125in;
-		height: 0.125in;
+		font-family: Arial Black, sans-serif;
 		width: 1.5in;
 		overflow: hidden;
 		white-space: nowrap;
@@ -44,6 +38,11 @@
 	
 	.label-page {
 		page-break-after: always;
+		font-family: Arial, sans-serif;
+	}
+	
+	.label-header {
+		padding: 0 0.3in;
 	}
 
 	.label-group {
@@ -52,7 +51,7 @@
 	}
 
 	tr.nospace > td { 
-		padding: 0.05in 0 0 0.05in!important;
+		padding: 0 0 0 0.05in!important;
 	}
 	
 </style>
@@ -60,19 +59,17 @@
 <body>
 	{% for(var i=0, l=data.length; i<l; i++) { %}
 		<div class="label-page">
-			<div id="header-html" class="hidden-pdf">
-				<div class="letter-head">
-					<img src="/files/FoamSurfaceLogo-BnW-200x52.jpg">
-					<div>
-						<p style="margin: 0 0 0 40px; border: none; padding: 0px; font-size: 9px;">
-							<br>
-							4656 44th St SE, Ste B
-							<br>
-							Grand Rapids, MI 49512
-							<br>
-							616-607-0061
-						</p>
-					</div>
+			<div class="label-header">
+				<img src="/files/FoamSurfaceLogo-BnW-200x52.jpg">
+				<div>
+					<p style="margin: 0 0 0 40px; border: none; padding: 0px; font-size: 9px;">
+						<br>
+						4656 44th St SE, Ste B
+						<br>
+						Grand Rapids, MI 49512
+						<br>
+						616-607-0061
+					</p>
 				</div>
 			</div>
 			<div class="label-group">
