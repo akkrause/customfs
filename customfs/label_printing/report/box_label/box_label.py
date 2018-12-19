@@ -63,7 +63,7 @@ def get_labels(filters):
 				INNER JOIN `tabSales Order` AS SO
 					ON SO.name = SOI.parent
 			WHERE
-				SOI.delivered_qty < SOI.qty
+				SO.status NOT IN ('Completed', 'Cancelled', 'Closed')
 				{conditions}
 
 			GROUP BY SOI.parent
