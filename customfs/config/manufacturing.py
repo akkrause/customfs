@@ -10,7 +10,7 @@ def get_data():
 					"type": "report",
 					"is_query_report": True,
 					"name": "Box Label",
-					"doctype": "Sale Order Item",
+					"doctype": "Sales Order Item",
 				}, 	{
 					"type": "report",
 					"is_query_report": True,
