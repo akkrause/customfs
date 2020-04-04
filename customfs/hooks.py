@@ -120,3 +120,10 @@ app_license = "MIT"
 # 	"frappe.desk.doctype.event.event.get_events": "customfs.event.get_events"
 # }
 
+
+# Jinja
+jenv = {
+    "methods": [
+        "money_in_words:customfs.utils.data.money_in_words"
+    ]
+}
