@@ -13,7 +13,7 @@
  "module": "Label Printing", 
  "name": "Box Label", 
  "owner": "Administrator", 
- "ref_doctype": "Production Order", 
+ "ref_doctype": "Work Order",
  "report_name": "Box Label", 
  "report_type": "Script Report", 
  "roles": [
