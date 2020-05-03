@@ -62,7 +62,7 @@ def get_labels(filters):
 	if label_detail:
 		label_count = 0
 		while label_count < print_qty:
-			labels.append(label_detail[0] + ("/Item/" + label_detail[0][0][5] + "/" + label_detail[0][0][6:8] + "/" + label_detail[0][0][8:10] + ".png",)) 
+			labels.append(label_detail[0] + ("/Item/" + label_detail[0][0][5] + "/" + label_detail[0][0][6:8] + "/" + label_detail[0][0][8:10] + label_detail[0][0] + ".png",)) 
 			label_count += 1
 	return labels	
 
