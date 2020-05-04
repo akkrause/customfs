@@ -15,7 +15,7 @@
 <body>
 	{% for(var i=0, l=data.length; i<l; i++) { %}
 		<div class="label-page">
-			<img src="https://epe.foamsurface.com/Item/0/07/56/Item-00756.png">
+			<img src="{%= data[i][ __("Label File")] %}">
 		</div>
 	{% } %}
 </body>
