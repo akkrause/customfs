@@ -1,21 +1,29 @@
 <style>
-    @media print {
+	.print-format, .body {
+		min-width: 0;
+		max-width: 2.625in;
+		min-height: 1in;
+		padding: 0;
+	}
 	.label-page {
 		height: 1in;
 		width: 2.625in;
+		margin:0;
+		border:0;
 		page-break-after: always;
 		font-family: Arial, sans-serif;
 	}
-    }
-    @page {
-	margin: 0.0625in;
-    }
+	@page {
+		size: 2.625in 1in;
+		margin: 0;
+		bleed: 0;
+	}
 </style>
 
 <body>
 	{% for(var i=0, l=data.length; i<l; i++) { %}
 		<div class="label-page">
-			<img src="{%= data[i][ __("Label File")] %}">
+			<img src="{%= data[i]["Label File"] %}" >
 		</div>
 	{% } %}
 </body>
