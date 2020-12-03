@@ -15,17 +15,74 @@ def execute(filters=None):
 
 def get_columns():
 	columns = [
-		_("Sales Order") + ":Link/Sales Order:100",
-		_("Sales Order Sr No") + ":Data:100",
-		_("Item Code") + ":Link/Item:100",
-		_("Item Name") + ":Data:100",
-		_("Description") + ":Data:200",
-		_("Customer Name") + ":Data:100",
-		_("PO No") + ":Data:100",
-		_("PO Date") + ":Date:60",
-		_("Customer Item Code") + ":Data:100",
-		_("Qty") + ":Int:50",
-		_("Box Qty") + ":Int:50"
+		{
+			"label": _("Sales Order"),
+			"fieldname": "sales_order",
+			"fieldtype": "Link",
+			"options": "Sales Order",
+			"width": 100
+		},
+		{
+			"label": _("Sales Order Sr No"),
+			"fieldname": "sr_no",
+			"fieldtype": "Data",
+			"width": 100
+		},
+		{
+			"label": _("Item Code"),
+			"fieldname": "item_code",
+			"fieldtype": "Link",
+			"options": "Item",
+			"width": 100
+		},
+		{
+			"label": _("Item Name"),
+			"fieldname": "item_name",
+			"fieldtype": "Data",
+			"width": 100
+		},
+		{
+			"label": _("Description"),
+			"fieldname": "description",
+			"fieldtype": "Data",
+			"width": 200
+		},
+		{
+			"label": _("Customer Name"),
+			"fieldname": "customer_name",
+			"fieldtype": "Data",
+			"width": 100
+		},
+		{
+			"label": _("PO No"),
+			"fieldname": "po_no",
+			"fieldtype": "Data",
+			"width": 100
+		},
+		{
+			"label": _("PO Date"),
+			"fieldname": "po_date",
+			"fieldtype": "Date",
+			"width": 60
+		},
+		{
+			"label": _("Customer Item Code"),
+			"fieldname": "customer_item_code",
+			"fieldtype": "Data",
+			"width": 100
+		},
+		{
+			"label": _("Qty"),
+			"fieldname": "qty",
+			"fieldtype": "Int",
+			"width": 50
+		},
+		{
+			"label": _("Box Qty"),
+			"fieldname": "box_qty",
+			"fieldtype": "Int",
+			"width": 50
+		}
 	]
 
 	return columns
@@ -82,4 +139,5 @@ def get_labels(filters):
 		labels.append(label_detail[0] + (remaining_qty,))
 
 	return labels	
+
 

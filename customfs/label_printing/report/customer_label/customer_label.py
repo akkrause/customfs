@@ -15,12 +15,44 @@ def execute(filters=None):
 
 def get_columns():
 	columns = [
-		_("Item Code") + ":Link/Item:100",
-		_("Item Name") + ":Data:100",
-		_("Description") + ":Data:200",
-		_("Customer Name") + ":Link/Customer:100",
-		_("Customer Item Code") + ":Data:100",
-                _("Label File") + ":Data:200"
+		{
+			"label": _("Item Code"),
+			"fieldname": "item_code",
+			"fieldtype": "Link",
+			"options": "Item",
+			"width": 100
+		},
+		{
+			"label": _("Item Name"),
+			"fieldname": "item_name",
+			"fieldtype": "Data",
+			"width": 100
+		},
+		{
+			"label": _("Description"),
+			"fieldname": "description",
+			"fieldtype": "Data",
+			"width": 200
+		},
+		{
+			"label": _("Customer Name"),
+			"fieldname": "customer_name",
+			"fieldtype": "Link",
+			"options": "Customer",
+			"width": 100
+		},
+		{
+			"label": _("Customer Item Code"),
+			"fieldname": "customer_item_code",
+			"fieldtype": "Data",
+			"width": 100
+		},
+		{
+			"label": _("Label File"),
+			"fieldname": "label_file",
+			"fieldtype": "Data",
+			"width": 200
+		}
 	]
 
 	return columns

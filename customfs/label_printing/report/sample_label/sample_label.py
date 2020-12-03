@@ -13,11 +13,37 @@ def execute(filters=None):
 
 def get_columns():
 	columns = [
-		_("Item Code") + ":Link/Item:100",
-		_("Description") + ":Data:200",
-		_("Customer ID") + ":Data:100",
-		_("Customer Name") + ":Data:100",
-		_("Customer Item Code") + ":Data:100"
+		{
+			"label": _("Item Code"),
+			"fieldname": "item_code",
+			"fieldtype": "Link",
+			"options": "Item",
+			"width": 100
+		},
+		{
+			"label": _("Description"),
+			"fieldname": "description",
+			"fieldtype": "Data",
+			"width": 200
+		},
+		{
+			"label": _("Customer ID"),
+			"fieldname": "customer_id",
+			"fieldtype": "Data",
+			"width": 100
+		},
+		{
+			"label": _("Customer Name"),
+			"fieldname": "customer_name",
+			"fieldtype": "Data",
+			"width": 100
+		},
+		{
+			"label": _("Customer Item Code"),
+			"fieldname": "customer_item_code",
+			"fieldtype": "Data",
+			"width": 100
+		}
 	]
 	return columns
 
