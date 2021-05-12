@@ -1,124 +1,122 @@
 <style>
-	@page {
-		size: portrait;
-		margin: 0;
-	}
+        @page {
+                size: 4in 6in;
+                margin: 0;
+        }
 
-	.print-format,.body {
-		min-width: 0;
-		max-width: 4in;
-		min-height: 6in;
-		padding: 0.25in;
-	}
+        .print-format,.body {
+                min-width: 0;
+                max-width: 4in;
+                min-height: 6in;
+                padding: 0;
+        }
 
-	.label-page {
-		height: 5.5in;
-		width: 3.5in;
-		margin:0;
-		border:0;
-		page-break-after: always;
-		font-family: Arial, sans-serif;
-	}
+        .label-page {
+                margin:0;
+                border:0;
+                padding:0.25in;
+                page-break-after: always;
+                font-family: Arial, sans-serif;
+        }
 
-	.title-left {
-		font-size: 0.125in;
-		padding: 0 0 0 0;
-	}
+        .title-left {
+                font-size: 0.125in;
+                padding: 0 0 0 0;
+        }
 
-	.title-right {
-		font-size: 0.125in;
-		width: 0.75in;
-		text-align: right;
-		padding: 0.1 0 0 0;
-	}
+        .title-right {
+                font-size: 0.125in;
+                width: 0.75in;
+                text-align: right;
+                padding: 0.1 0 0 0;
+        }
 
-	.data-large {
-		font-size: 0.27in;
-		font-family: Arial Black, sans-serif;
-		width: 3in;
-		padding: 0 0 0 0.3in;
-	}
+        .data-large {
+                font-size: 0.27in;
+                font-family: Arial Black, sans-serif;
+                width: 3in;
+                padding: 0 0 0 0.3in;
+        }
 
-	.data-normal {
-		font-size: 0.125in;
-		font-family: Arial Black, sans-serif;
-		width: 1.5in;
-		overflow: hidden;
-		white-space: nowrap;
-	}
-	
-	.label-header {
-		padding-left: 0.75in;
-		padding-top: 0.25in;
-	}
+        .data-normal {
+                font-size: 0.125in;
+                font-family: Arial Black, sans-serif;
+                width: 1.5in;
+/*              overflow: hidden;
+                white-space: nowrap;*/
+        }
 
-	.label-group {
-		position: static;
-		padding: 0.3in 0 0 0;
-	}
+        .label-header {
+                padding: 0.25in 0.1in 0.1in 0.75in;
+        }
 
-	tr.nospace > td { 
-		padding: 0 0 0 0.05in!important;
-	}
-	.address {
-		margin: 0 0 0 40px;
-		border: none;
-		padding: 0px;
-		font-size: 9px;
-	}
-	
+        .label-group {
+/*              position: static;*/
+                padding: 0.3in 0.1in 0.1in 0.1in;
+        }
+
+        tr.nospace > td {
+                padding: 0 0 0 0.05in!important;
+        }
+        .address {
+                margin: 0 0 0 40px;
+                border: none;
+                padding: 0px;
+                font-size: 9px;
+        }
+
 </style>
 
 <body>
-	{% for(var i=0, l=data.length; i<l; i++) { %}
-		<div class="label-page">
-			<div class="label-header">
-				<img src="/files/FoamSurfaceLogo-BnW-200x52.jpg">
-				<div>
-					<div class="address">
-						<br>
-						4656 44th St SE, Ste B
-						<br>
-						Grand Rapids, MI 49512
-						<br>
-						616-607-0061
-					</div>
-				</div>
-			</div>
-			<div class="label-group">
-				<div class="title-left"> Item: </div>
-				<div class="data-large"> {%= data[i].item_code %} </div>
-				<div class="title-left"> Customer Item: </div>
-				<div class="data-large"> {%= data[i].customer_item_code %} </div>
-				<div class="title-left"> Quantity: </div>
-				<div class="data-large"> {%= data[i].box_qty %} </div>
-			</div>
-			<div class="label-group">
-				<table>
-					<tbody>
-						<tr class="nospace">
-							<td class="title-right"> Customer: </td>
-							<td class="data-normal"> {%= data[i].customer_name %} </td>
-						</tr>
-						<tr class="nospace">
-							<td class="title-right"> PO: </td>
-							<td class="data-normal"> {%= data[i].po_no %} </td>
-						</tr>
-						<tr class="nospace">
-							<td class="title-right"> PO Date: </td> 
-							<td class="data-normal"> {%= data[i].po_date %} </td>
-						</tr>
-						<tr class="nospace">
-							<td class="title-right"> Item Name: </td>
-							<td class="data-normal"> {%= data[i].item_name %} </td>
-						</tr>
-						<tr class="nospace">
-							<td class="title-right"> SO: </td>
-							<td class="data-normal"> {%= data[i].sales_order %} </td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
-	{% } %}
+        {% for(var i=0, l=data.length; i<l; i++) { %}
+                <div class="label-page">
+                        <div class="label-header">
+                                <img src="/files/FoamSurfaceLogo-BnW.jpg" style="width:2in;height:0.5in;">
+                                <div>
+                                        <div class="address">
+                                                <br>
+                                                4656 44th St SE, Ste B
+                                                <br>
+                                                Grand Rapids, MI 49512
+                                                <br>
+                                                616-607-0061
+                                        </div>
+                                </div>
+                        </div>
+                        <div class="label-group">
+                                <div class="title-left"> Item: </div>
+                                <div class="data-large"> {%= data[i].item_code %} </div>
+                                <div class="title-left"> Customer Item: </div>
+                                <div class="data-large"> {%= data[i].customer_item_code %} </div>
+                                <div class="title-left"> Quantity: </div>
+                                <div class="data-large"> {%= data[i].box_qty %} </div>
+                        </div>
+                        <div class="label-group">
+                                <table>
+                                        <tbody>
+                                                <tr class="nospace">
+                                                        <td class="title-right"> Customer: </td>
+                                                        <td class="data-normal"> {%= data[i].customer_name %} </td>
+                                                </tr>
+                                                <tr class="nospace">
+                                                        <td class="title-right"> PO: </td>
+                                                        <td class="data-normal"> {%= data[i].po_no %} </td>
+                                                </tr>
+                                                <tr class="nospace">
+                                                        <td class="title-right"> PO Date: </td>
+                                                        <td class="data-normal"> {%= data[i].po_date %} </td>
+                                                </tr>
+                                                <tr class="nospace">
+                                                        <td class="title-right"> Item Name: </td>
+                                                        <td class="data-normal"> {%= data[i].item_name %} </td>
+                                                </tr>
+                                                <tr class="nospace">
+                                                        <td class="title-right"> SO: </td>
+                                                        <td class="data-normal"> {%= data[i].sales_order %} </td>
+                                                </tr>
+                                        </tbody>
+                                </table>
+                        </div>
+                </div>
+        {% } %}
 </body>
