@@ -122,8 +122,8 @@ app_license = "MIT"
 
 
 # Jinja
-jenv = {
+jinja = {
     "methods": [
-        "money_in_words:customfs.utils.data.money_in_words"
+        "customfs.utils.data.money_in_words"
     ]
 }

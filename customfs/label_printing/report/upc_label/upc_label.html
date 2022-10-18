@@ -1,0 +1,37 @@
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre Barcode EAN13 Text">
+<style>
+	@page {
+		size: landscape;
+		height: 1.25in;
+		width: 2.25in;
+		margin: 0;
+		padding: 0;
+	}
+
+	.item-name {
+		font-family: Arial;
+		font-size: 12px;
+		font-weight: bold;
+		text-align: center;
+		margin: 0;
+		padding: 0;
+		line-height: 1;
+	}
+
+	.upc {
+		font-family: "Libre Barcode EAN13 Text";
+		font-size: 80px;
+		font-weight: normal;
+		text-align: center;
+		margin: 0;
+		padding: 0;
+		line-height: 1.2;
+	}
+	
+</style>
+
+<body>
+	<div class="upc"> {%= data[0].upc_code %} </div>
+	<div class="item-name"> {%= data[0].item_name %} </div>
+</body>
