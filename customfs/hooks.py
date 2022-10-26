@@ -127,3 +127,7 @@ jinja = {
         "customfs.utils.data.money_in_words"
     ]
 }
+
+fixtures = [
+	{"dt": "Custom Field", "filters": [["_user_tags", "like", "%customfs%"]]},
+]
