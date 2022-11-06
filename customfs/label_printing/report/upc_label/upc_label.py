@@ -65,7 +65,8 @@ def get_labels(filters):
 	even = 0
 	upc = str(label_detail[0].upc_code)
 	if len(upc) != 11:
-		label_detail[0].upc_code = "UPC Code must be an 11 digit number."
+		label_detail[0].item_name = "UPC Code must be an 11 digit number."
+		label_detail[0].upc_code = "-----------"
 	else:
 		for d in range(11):
 			if (d % 2) == 0:
