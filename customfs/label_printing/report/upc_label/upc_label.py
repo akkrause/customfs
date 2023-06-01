@@ -34,7 +34,7 @@ def get_columns():
 		},
 		{
 			"label": _("UPC Code"),
-			"fieldname": "upc_code",
+			"fieldname": "barcode",
 			"fieldtype": "Data",
 			"width": 300
 		}
@@ -52,31 +52,16 @@ def get_labels(filters):
                 Item.item_code,
                 Item.description,
 				Item.item_name,
-				Item.upc_code
+				ItemBC.barcode
 			FROM
-				`tabItem` AS Item
+				`tabItem` AS Item,
+				`tabItem Barcode` AS ItemBC
 			WHERE
-				Item.disabled = 0
+				ItemBC.parent = Item.name
+				And Item.disabled = 0
 				{conditions}
 
 			LIMIT 1""".format(conditions=conditions), as_dict=True)
-	test = ""
-	odd = 0
-	even = 0
-	upc = str(label_detail[0].upc_code)
-	if len(upc) != 11:
-		label_detail[0].item_name = "UPC Code must be an 11 digit number."
-		label_detail[0].upc_code = "-----------"
-	else:
-		for d in range(11):
-			if (d % 2) == 0:
-				odd += int(upc[d])
-			else:
-				even += int(upc[d])
-		chksum = (odd * 3 + even) % 10
-		if chksum > 0:
-			chksum =  10 - chksum
-		label_detail[0].upc_code += str(chksum)
-
+	
 	return label_detail	
 
