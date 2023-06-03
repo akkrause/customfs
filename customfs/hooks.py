@@ -130,5 +130,4 @@ jinja = {
 
 fixtures = [
 	{"dt": "Custom Field", "filters": [["_user_tags", "like", "%customfs%"]]},
-	{"dt": "Workspace Link", "filters": [["label", "in", ("Labels","UPC Label","Box Label","Sample Label")]]},
 ]
