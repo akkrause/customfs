@@ -51,7 +51,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-06-03 09:52:53.974377",
+ "modified": "2023-06-04 11:43:07.779297",
  "modified_by": "Administrator",
  "module": "Label Printing",
  "name": "Label Printing",
@@ -61,7 +61,20 @@
  "public": 1,
  "quick_lists": [],
  "restrict_to_domain": "Manufacturing",
- "roles": [],
+ "roles": [
+  {
+   "role": "Manufacturing User"
+  },
+  {
+   "role": "Manufacturing Manager"
+  },
+  {
+   "role": "Stock User"
+  },
+  {
+   "role": "Stock Manager"
+  }
+ ],
  "sequence_id": 23.0,
  "shortcuts": [],
  "title": "Label Printing"
