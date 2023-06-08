@@ -20,8 +20,8 @@ frappe.query_reports["Box Label"] = {
 			"default": "1",
 			"reqd": 1			
 		}, {
-			"fieldname": "print_qty",
-			"label": __("Print Qty"),
+			"fieldname": "part_qty",
+			"label": __("Part Qty"),
 			"fieldtype": "Int",
 			"default": "1",
 			"reqd": 1			

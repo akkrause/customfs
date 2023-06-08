@@ -99,9 +99,9 @@ def get_labels(filters):
 	if box_qty < 1:
 		box_qty = 1
 		
-	print_qty = filters.get("print_qty")
-	if print_qty < 1:
-		print_qty = 1
+	part_qty = filters.get("part_qty")
+	if part_qty < 1:
+		part_qty = 1
 
 	label_detail = frappe.db.sql("""
 			SELECT
@@ -130,7 +130,7 @@ def get_labels(filters):
 	labels = []
 
 	if label_detail:
-		remaining_qty = print_qty
+		remaining_qty = part_qty
 	
 		while box_qty < remaining_qty:
 			labels.append(label_detail[0] + (box_qty,))
