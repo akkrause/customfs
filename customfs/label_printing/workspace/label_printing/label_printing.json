@@ -51,7 +51,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-06-03 09:52:53.974377",
+ "modified": "2023-06-04 12:49:51.333366",
  "modified_by": "Administrator",
  "module": "Label Printing",
  "name": "Label Printing",
@@ -60,7 +60,7 @@
  "parent_page": "",
  "public": 1,
  "quick_lists": [],
- "restrict_to_domain": "Manufacturing",
+ "restrict_to_domain": "",
  "roles": [],
  "sequence_id": 23.0,
  "shortcuts": [],

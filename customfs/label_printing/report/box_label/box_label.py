@@ -72,6 +72,12 @@ def get_columns():
 			"width": 100
 		},
 		{
+			"label": _("Alt Box Label"),
+			"fieldname": "alt_box_label",
+			"fieldtype": "Int",
+			"width": 10
+		},
+		{
 			"label": _("Qty"),
 			"fieldname": "qty",
 			"fieldtype": "Int",
@@ -99,9 +105,9 @@ def get_labels(filters):
 	if box_qty < 1:
 		box_qty = 1
 		
-	print_qty = filters.get("print_qty")
-	if print_qty < 1:
-		print_qty = 1
+	part_qty = filters.get("part_qty")
+	if part_qty < 1:
+		part_qty = 1
 
 	label_detail = frappe.db.sql("""
 			SELECT
@@ -114,11 +120,14 @@ def get_labels(filters):
 				SO.po_no,
 				SO.po_date,
 				SOI.customer_item_code,
-				SOI.qty
+				SOI.qty,
+				I.alt_box_label
 			FROM
 				`tabSales Order Item` AS SOI
 				INNER JOIN `tabSales Order` AS SO
 					ON SO.name = SOI.parent
+				INNER JOIN `tabItem` AS I
+					ON SOI.item_code = I.name
 			WHERE
 				SO.status NOT IN ('Completed', 'Cancelled', 'Closed')
 				{conditions}
@@ -130,7 +139,7 @@ def get_labels(filters):
 	labels = []
 
 	if label_detail:
-		remaining_qty = print_qty
+		remaining_qty = part_qty
 	
 		while box_qty < remaining_qty:
 			labels.append(label_detail[0] + (box_qty,))
