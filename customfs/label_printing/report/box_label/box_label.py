@@ -120,8 +120,8 @@ def get_labels(filters):
 				SO.po_no,
 				SO.po_date,
 				SOI.customer_item_code,
-				SOI.qty,
-				I.alt_box_label
+				I.alt_box_label,
+				SOI.qty
 			FROM
 				`tabSales Order Item` AS SOI
 				INNER JOIN `tabSales Order` AS SO
