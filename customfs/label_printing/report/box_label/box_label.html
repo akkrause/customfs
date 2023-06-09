@@ -76,14 +76,16 @@
 	{% for(var i=0, l=data.length; i<l; i++) { %}
 		<div class="label-page">
 			<div class="label-header">
-				<img src="/files/FoamSurfaceLogo-BnW.jpg" style="width:2in;height:0.5in;">
-				<div>
-					<div class="address"><br>
-						4656 44th St SE, Ste B<br>
-						Grand Rapids, MI 49512<br>
-						616-607-0061
+				{% if not data[i].alt_box_label == 1 %}
+					<img src="/files/FoamSurfaceLogo-BnW.jpg" style="width:2in;height:0.5in;">
+					<div>
+						<div class="address"><br>
+							4656 44th St SE, Ste B<br>
+							Grand Rapids, MI 49512<br>
+							616-607-0061
+						</div>
 					</div>
-				</div>
+				{% endif %}
 			</div>
 			<div class="label-group">
 				<div class="title-left"> Item: </div>
@@ -97,8 +99,10 @@
 				<table>
 					<tbody>
 						<tr class="nospace">
-							<td class="title-right"> Customer: </td>
-							<td class="data-normal"> {%= data[i].customer_name %} </td>
+							{% if not data[i].alt_box_label == 1 %}
+								<td class="title-right"> Customer: </td>
+								<td class="data-normal"> {%= data[i].customer_name %} </td>
+							{% endif %}
 						</tr>
 						<tr class="nospace">
 							<td class="title-right"> PO: </td>

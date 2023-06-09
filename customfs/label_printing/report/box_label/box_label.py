@@ -72,6 +72,12 @@ def get_columns():
 			"width": 100
 		},
 		{
+			"label": _("Alt Box Label"),
+			"fieldname": "alt_box_label",
+			"fieldtype": "Int",
+			"width": 10
+		},
+		{
 			"label": _("Qty"),
 			"fieldname": "qty",
 			"fieldtype": "Int",
@@ -114,11 +120,14 @@ def get_labels(filters):
 				SO.po_no,
 				SO.po_date,
 				SOI.customer_item_code,
-				SOI.qty
+				SOI.qty,
+				I.alt_box_label
 			FROM
 				`tabSales Order Item` AS SOI
 				INNER JOIN `tabSales Order` AS SO
 					ON SO.name = SOI.parent
+				INNER JOIN `tabItem` AS I
+					ON SOI.item_code = I.name
 			WHERE
 				SO.status NOT IN ('Completed', 'Cancelled', 'Closed')
 				{conditions}
