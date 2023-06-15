@@ -66,6 +66,12 @@ def get_columns():
 			"width": 60
 		},
 		{
+			"label": _("Delivery Date"),
+			"fieldname": "delivery_date",
+			"fieldtype": "Date",
+			"width": 60
+		},
+		{
 			"label": _("Customer Item Code"),
 			"fieldname": "customer_item_code",
 			"fieldtype": "Data",
@@ -119,6 +125,7 @@ def get_labels(filters):
 				SO.customer_name,
 				SO.po_no,
 				SO.po_date,
+				SOI.delivery_date,
 				SOI.customer_item_code,
 				I.alt_box_label,
 				SOI.qty

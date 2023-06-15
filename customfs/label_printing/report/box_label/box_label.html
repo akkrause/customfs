@@ -1,128 +1,201 @@
-<style>
-	@page {
-#                size: 4in 6in;
-		size: portrait;
-		height: 6in;
-		width: 4in;
-		padding: 0;			
-		margin: 0;
-	}
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script src="/assets/frappe/node_modules/jsbarcode/dist/JsBarcode.all.js"></script>
+	<style>
+		@page {
+			size: landscape;
+			height: 6in;
+			width: 4in;
+			padding: 0;			
+			margin: 0;
+		}
 
-#	.print-format,.body {
-#		min-width: 0;
-#		max-width: 4in;
-#		min-height: 6in;
-#		padding: 0;
-#	}
+		.label-page {
+			padding: 0.125in;
+			page-break-after: always;
+			font-family: Arial, sans-serif;
+		}
 
-	.label-page {
-#		margin:0;
-#		border:0;
-		padding:0.25in;
-		page-break-after: always;
-		font-family: Arial, sans-serif;
-	}
+		.title-left {
+			font-size: 0.125in;
+			padding: 0 0 0 1%;
+		}
 
-	.title-left {
-		font-size: 0.125in;
-#		padding: 0 0 0 0;
-	}
+		.title-right {
+			font-size: 0.125in;
+			text-align: right;
+			padding: 1% 0 0 0;
+			white-space: nowrap;
+		}
 
-	.title-right {
-		font-size: 0.125in;
-		width: 0.75in;
-		text-align: right;
-		padding: 0.1 0 0 0;
-	}
+		.data-large {
+			font-size: 0.5in;
+			font-family: Arial Black, sans-serif;
+			overflow: hidden;
+			text-align: center;
+			white-space: nowrap;
+			padding: 0 0 0 2%
+		}
 
-	.data-large {
-		font-size: 0.27in;
-		font-family: Arial Black, sans-serif;
-		width: 3.5in;
-		max-height: 0.75in;
-		overflow: hidden;
-		padding: 0 0 0 0.3in;
-	}
+		.data-normal {
+			font-size: 0.125in;
+			font-family: Arial Black, sans-serif;
+			overflow: hidden;
+			white-space: nowrap;
+		}
 
-	.data-normal {
-		font-size: 0.125in;
-		font-family: Arial Black, sans-serif;
-		width: 3in;
-		overflow: hidden;
-		white-space: nowrap;
-	}
+		tr.nospace > td {
+			padding: 0 0 0 1%!important;
+		}
 
-	.label-header {
-		padding: 0.25in 0.1in 0.1in 0.75in;
-	}
+		.address {
+			border: none;
+			font-size: 9px;
+			text-align: center;
+		}
+		
+		.logo-image {
+			margin-left: 20%;
+			margin-right: 20%;
+			margin-top: 10%;
+		}
 
-	.label-group {
-		padding: 0.2in 0.1in 0.1in 0.1in;
-	}
+		.barcode-image {
+			text-align: center;
+		}
 
-	tr.nospace > td {
-		padding: 0 0 0 0.05in!important;
-	}
-	.address {
-		margin: 0 0 0 40px;
-		border: none;
-		padding: 0px;
-		font-size: 9px;
-	}
+		.grid-container {
+			display: grid;
+			gap: 2px;
+			grid-template-columns: 50% 50%;
+			grid-template-rows: 25% 25% 25% 25%;
+		}
 
-</style>
+		.logo { grid-area: 1 /1 / 3 / 2; 
+				outline: 2px solid black;
+		}
+		.extra { grid-area: 3 / 1 / 5 / 2;
+				outline: 2px solid black;
+				padding: 2% 0 0 1%;
+		}
+		.po { grid-area: 1 / 2 / 2 / 3;
+				outline: 2px solid black;
+		}
+		.cust_item { grid-area: 2 / 2 / 3 / 3;
+				outline: 2px solid black;
+		}
+		.qty { grid-area: 3 / 2 / 4 / 3;
+				outline: 2px solid black;
+		}
+		.item { grid-area: 4 / 2 / 5 / 3;
+				outline: 2px solid black;
+		}
+	</style>
+</head>
 
 <body>
 	{% for(var i=0, l=data.length; i<l; i++) { %}
 		<div class="label-page">
-			<div class="label-header">
-				{% if not data[i].alt_box_label == 1 %}
-					<img src="/files/FoamSurfaceLogo-BnW.jpg" style="width:2in;height:0.5in;">
-					<div>
-						<div class="address"><br>
-							4656 44th St SE, Ste B<br>
-							Grand Rapids, MI 49512<br>
-							616-607-0061
+			<div class="grid-container">
+				<div class="logo">
+					{% if not data[i].alt_box_label == 1 %}
+						<div class="logo-image">
+							<img src="/files/FoamSurfaceLogo-BnW.jpg" >
 						</div>
+						<div>
+							<div class="address"><br>
+								4656 44th St SE, Ste B<br>
+								Grand Rapids, MI 49512<br>
+								616-607-0061
+							</div>
+						</div>
+					{% endif %}
+				</div>
+				<div class="item">
+					<div class="title-left"> Item: </div>
+					<div class="barcode-image">
+						<img id="itemcode"/>
+						<script>
+							JsBarcode("#itemcode", "{%= data[i].item_code %}", {
+								format: "CODE128",
+								width: 1,
+								height: 30
+							});
+						</script>
 					</div>
-				{% endif %}
-			</div>
-			<div class="label-group">
-				<div class="title-left"> Item: </div>
-				<div class="data-large"> {%= data[i].item_code %} </div>
-				<div class="title-left"> Customer Item: </div>
-				<div class="data-large"> {%= data[i].customer_item_code %} </div>
-				<div class="title-left"> Quantity: </div>
-				<div class="data-large"> {%= data[i].box_qty %} </div>
-			</div>
-			<div class="label-group">
-				<table>
-					<tbody>
-						<tr class="nospace">
-							{% if not data[i].alt_box_label == 1 %}
-								<td class="title-right"> Customer: </td>
-								<td class="data-normal"> {%= data[i].customer_name %} </td>
-							{% endif %}
-						</tr>
-						<tr class="nospace">
-							<td class="title-right"> PO: </td>
-							<td class="data-normal"> {%= data[i].po_no %} </td>
-						</tr>
-						<tr class="nospace">
-							<td class="title-right"> PO Date: </td>
-							<td class="data-normal"> {%= data[i].po_date %} </td>
-						</tr>
-						<tr class="nospace">
-							<td class="title-right"> Item Name: </td>
-							<td class="data-normal"> {%= data[i].item_name %} </td>
-						</tr>
-						<tr class="nospace">
-							<td class="title-right"> SO: </td>
-							<td class="data-normal"> {%= data[i].sales_order %} </td>
-						</tr>
-					</tbody>
-				</table>
+				</div>
+				<div class="cust_item">
+					<div class="title-left"> Customer Item: </div>
+					<div class="barcode-image">
+						<img id="cust_item"/>
+						<script>
+							JsBarcode("#cust_item", "{%= data[i].customer_item_code %}", {
+								format: "CODE128",
+								width: 1,
+								height: 30
+							});
+						</script>
+					</div>
+				</div>
+				<div class="qty">
+					<div class="title-left"> Quantity: </div>
+					<div class="barcode-image">
+						<img id="quantity"/>
+						<script>
+							JsBarcode("#quantity", "{%= data[i].box_qty %}", {
+								format: "CODE128",
+								width: 1,
+								height: 30
+							});
+						</script>
+					</div>
+				</div>
+				<div class="po">
+					<div class="title-left"> PO: </div>
+					<div class="barcode-image">
+						<img id="po"/>
+						<script>
+							JsBarcode("#po", "{%= data[i].po_no %}", {
+								format: "CODE128",
+								width: 1,
+								height: 30
+							});
+						</script>
+					</div>
+				</div>
+				<div class="extra">
+					<table>
+						<tbody>
+							<tr class="nospace">
+								{% if not data[i].alt_box_label == 1 %}
+									<td class="title-right"> Customer: </td>
+									<td class="data-normal"> {%= data[i].customer_name %} </td>
+								{% endif %}
+							</tr>
+							<tr class="nospace">
+								<td class="title-right"> PO Date: </td>
+								<td class="data-normal"> {%= data[i].po_date %} </td>
+							</tr>
+							<tr class="nospace">
+								<td class="title-right"> Due Date: </td>
+								<td class="data-normal"> {%= data[i].delivery_date %} </td>
+							</tr>
+							<tr class="nospace">
+								<td class="title-right"> SO: </td>
+								<td class="data-normal"> {%= data[i].sales_order %} </td>
+							</tr>
+							<tr class="nospace">
+								<td class="title-right"> Item Name: </td>
+								<td class="data-normal"> {%= data[i].item_name %} </td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
 	{% } %}
 </body>
+</html>
