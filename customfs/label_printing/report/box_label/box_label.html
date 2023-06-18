@@ -3,7 +3,7 @@
 <head>
 	<title></title>
 	<meta charset="utf-8">
-	<script src="/assets/frappe/node_modules/jsbarcode/dist/JsBarcode.all.js"></script>
+	<script src="/assets/frappe/node_modules/jsbarcode/dist/barcodes/JsBarcode.code128.min.js"></script>
 	<style>
 		@page {
 			size: landscape;
@@ -19,30 +19,29 @@
 			font-family: Arial, sans-serif;
 		}
 
-		.title-left {
+		.title-barcode {
 			font-size: 0.125in;
 			padding: 0 0 0 1%;
 		}
 
-		.title-right {
+		.title-extra {
 			font-size: 0.125in;
+			font-weight:bold;
 			text-align: right;
 			padding: 1% 0 0 0;
 			white-space: nowrap;
 		}
 
-		.data-large {
-			font-size: 0.5in;
-			font-family: Arial Black, sans-serif;
+		.data-barcode {
+			font-size: 0.2in;
 			overflow: hidden;
 			text-align: center;
 			white-space: nowrap;
-			padding: 0 0 0 2%
+			font-weight:bold
 		}
 
-		.data-normal {
+		.data-extra {
 			font-size: 0.125in;
-			font-family: Arial Black, sans-serif;
 			overflow: hidden;
 			white-space: nowrap;
 		}
@@ -97,7 +96,14 @@
 </head>
 
 <body>
-	{% for(var i=0, l=data.length; i<l; i++) { %}
+	{% bc_options = "{
+		format: \"CODE128\",
+		width: 1,
+		height: 40,
+		margin: 5,
+		displayValue: false
+	}" %}
+	{% for(var i=0, l=data.length; i < l; i++) { %}
 		<div class="label-page">
 			<div class="grid-container">
 				<div class="logo">
@@ -115,81 +121,69 @@
 					{% endif %}
 				</div>
 				<div class="item">
-					<div class="title-left"> Item: </div>
+					<div class="title-barcode"> Item: </div>
 					<div class="barcode-image">
 						<img id="itemcode"/>
 						<script>
-							JsBarcode("#itemcode", "{%= data[i].item_code %}", {
-								format: "CODE128",
-								width: 1,
-								height: 30
-							});
+							JsBarcode("#itemcode", "{%= data[i].item_code %}", {{ bc_options }});
 						</script>
 					</div>
+					<div class="data-barcode"> {%= data[i].item_code %} </div>
 				</div>
 				<div class="cust_item">
-					<div class="title-left"> Customer Item: </div>
+					<div class="title-barcode"> Customer Item: </div>
 					<div class="barcode-image">
 						<img id="cust_item"/>
 						<script>
-							JsBarcode("#cust_item", "{%= data[i].customer_item_code %}", {
-								format: "CODE128",
-								width: 1,
-								height: 30
-							});
+							JsBarcode("#cust_item", "{%= data[i].customer_item_code %}", {{ bc_options }});
 						</script>
 					</div>
+					<div class="data-barcode"> {%= data[i].customer_item_code %} </div>
 				</div>
 				<div class="qty">
-					<div class="title-left"> Quantity: </div>
+					<div class="title-barcode"> Quantity: </div>
 					<div class="barcode-image">
 						<img id="quantity"/>
 						<script>
-							JsBarcode("#quantity", "{%= data[i].box_qty %}", {
-								format: "CODE128",
-								width: 1,
-								height: 30
-							});
+							JsBarcode("#quantity", "{%= data[i].box_qty %}", {{ bc_options }});
 						</script>
 					</div>
+					<div class="data-barcode"> {%= data[i].box_qty %} </div>
 				</div>
 				<div class="po">
-					<div class="title-left"> PO: </div>
+					<div class="title-barcode"> PO: </div>
 					<div class="barcode-image">
 						<img id="po"/>
 						<script>
-							JsBarcode("#po", "{%= data[i].po_no %}", {
-								format: "CODE128",
-								width: 1,
-								height: 30
-							});
+							JsBarcode("#po", "{%= data[i].po_no %}", {{ bc_options }});
 						</script>
 					</div>
+					<div class="data-barcode"> {%= data[i].po_no %} </div>
 				</div>
 				<div class="extra">
 					<table>
 						<tbody>
 							<tr class="nospace">
 								{% if not data[i].alt_box_label == 1 %}
-									<td class="title-right"> Customer: </td>
-									<td class="data-normal"> {%= data[i].customer_name %} </td>
+									<td class="title-extra"> Customer: </td>
+									<td class="data-extra"> {%= data[i].customer_name %} </td>
 								{% endif %}
 							</tr>
 							<tr class="nospace">
-								<td class="title-right"> PO Date: </td>
-								<td class="data-normal"> {%= data[i].po_date %} </td>
+								<td class="title-extra"> PO Date: </td>
+								<td class="data-extra"> {%= data[i].po_date %} </td>
 							</tr>
 							<tr class="nospace">
-								<td class="title-right"> Due Date: </td>
-								<td class="data-normal"> {%= data[i].delivery_date %} </td>
+								<td class="title-extra"> Due Date: </td>
+								<td class="data-extra"> {%= data[i].delivery_date %} </td>
 							</tr>
 							<tr class="nospace">
-								<td class="title-right"> SO: </td>
-								<td class="data-normal"> {%= data[i].sales_order %} </td>
+								<td class="title-extra"> SO: </td>
+								<td class="data-extra"> {%= data[i].sales_order %} </td>
 							</tr>
 							<tr class="nospace">
-								<td class="title-right"> Item Name: </td>
-								<td class="data-normal"> {%= data[i].item_name %} </td>
+								<td class="title-extra"> Item Name: </td>
+								<td class="data-extra"> {%= data[i].item_name %} </td>
 							</tr>
 						</tbody>
 					</table>
