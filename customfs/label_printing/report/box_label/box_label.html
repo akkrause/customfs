@@ -28,7 +28,6 @@
 			font-size: 0.125in;
 			font-weight:bold;
 			text-align: right;
-			padding: 1% 0 0 0;
 			white-space: nowrap;
 		}
 
@@ -47,7 +46,8 @@
 		}
 
 		tr.nospace > td {
-			padding: 0 0 0 1%!important;
+			padding-left: 1%!important;
+			padding-top: 0!important;
 		}
 
 		.address {
@@ -78,9 +78,9 @@
 		}
 		.extra { grid-area: 3 / 1 / 5 / 2;
 				outline: 2px solid black;
-				padding: 2% 0 0 1%;
+				padding: 3% 0 0 3%;
 		}
-		.po { grid-area: 1 / 2 / 2 / 3;
+		.po_no { grid-area: 1 / 2 / 2 / 3;
 				outline: 2px solid black;
 		}
 		.cust_item { grid-area: 2 / 2 / 3 / 3;
@@ -89,7 +89,7 @@
 		.qty { grid-area: 3 / 2 / 4 / 3;
 				outline: 2px solid black;
 		}
-		.item { grid-area: 4 / 2 / 5 / 3;
+		.po_date { grid-area: 4 / 2 / 5 / 3;
 				outline: 2px solid black;
 		}
 	</style>
@@ -100,7 +100,7 @@
 		format: \"CODE128\",
 		width: 1,
 		height: 40,
-		margin: 5,
+		margin: 0,
 		displayValue: false
 	}" %}
 	{% for(var i=0, l=data.length; i < l; i++) { %}
@@ -120,15 +120,15 @@
 						</div>
 					{% endif %}
 				</div>
-				<div class="item">
-					<div class="title-barcode"> Item: </div>
+				<div class="po_date">
+					<div class="title-barcode"> PO Date: </div>
 					<div class="barcode-image">
-						<img id="itemcode"/>
+						<img id="po_date"/>
 						<script>
-							JsBarcode("#itemcode", "{%= data[i].item_code %}", {{ bc_options }});
+							JsBarcode("#po_date", "{%= data[i].po_date %}", {{ bc_options }});
 						</script>
 					</div>
-					<div class="data-barcode"> {%= data[i].item_code %} </div>
+					<div class="data-barcode"> {%= data[i].po_date %} </div>
 				</div>
 				<div class="cust_item">
 					<div class="title-barcode"> Customer Item: </div>
@@ -150,12 +150,12 @@
 					</div>
 					<div class="data-barcode"> {%= data[i].box_qty %} </div>
 				</div>
-				<div class="po">
+				<div class="po_no">
 					<div class="title-barcode"> PO: </div>
 					<div class="barcode-image">
-						<img id="po"/>
+						<img id="po_no"/>
 						<script>
-							JsBarcode("#po", "{%= data[i].po_no %}", {{ bc_options }});
+							JsBarcode("#po_no", "{%= data[i].po_no %}", {{ bc_options }});
 						</script>
 					</div>
 					<div class="data-barcode"> {%= data[i].po_no %} </div>
@@ -170,20 +170,20 @@
 								{% endif %}
 							</tr>
 							<tr class="nospace">
-								<td class="title-extra"> PO Date: </td>
-								<td class="data-extra"> {%= data[i].po_date %} </td>
-							</tr>
-							<tr class="nospace">
-								<td class="title-extra"> Due Date: </td>
-								<td class="data-extra"> {%= data[i].delivery_date %} </td>
-							</tr>
-							<tr class="nospace">
 								<td class="title-extra"> SO: </td>
 								<td class="data-extra"> {%= data[i].sales_order %} </td>
 							</tr>
 							<tr class="nospace">
+								<td class="title-extra"> Item: </td>
+								<td class="data-extra"> {%= data[i].item_code %} </td>
+							</tr>
+							<tr class="nospace">
 								<td class="title-extra"> Item Name: </td>
 								<td class="data-extra"> {%= data[i].item_name %} </td>
+							</tr>
+							<tr class="nospace">
+								<td class="title-extra"> Due Date: </td>
+								<td class="data-extra"> {%= data[i].delivery_date %} </td>
 							</tr>
 						</tbody>
 					</table>
