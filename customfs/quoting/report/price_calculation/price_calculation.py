@@ -16,11 +16,18 @@ def execute(filters=None):
 def get_columns():
 	columns = [
 		{ "label": _("Record Type"), "fieldname": "type", "fieldtype": "Data", "width": 20 },
+		# Common fields
 		{ "label": _("Item Code"), "fieldname": "item_code", "fieldtype": "Link", "options": "Item", "width": 100 },
 		{ "label": _("Item Name"), "fieldname": "item_name", "fieldtype": "Data", "width": 100 },
-		{ "label": _("Description"), "fieldname": "description", "fieldtype": "Data", "width": 200 },
+		{ "label": _("Description"), "fieldname": "desc", "fieldtype": "Data", "width": 200 },
+		{ "label": _("Customer"), "fieldname": "cust", "fieldtype": "Data", "width": 100 },
+		{ "label": _("Commission"), "fieldname": "comm", "fieldtype": "Data", "width": 100 },  #from customer
+		{ "label": _("Margin"), "fieldname": "margin", "fieldtype": "Data", "width": 100 },  #from customer
+		# Results
+		{ "label": _("Quote Quantity"), "fieldname": "qty", "fieldtype": "Data", "width": 100 },
+		{ "label": _("Quote Price"), "fieldname": "price", "fieldtype": "Data", "width": 100 },
 
-		{ "label": _("Sales Order"), "fieldname": "sales_order", "fieldtype": "Link", "options": "Sales Order", "width": 100 },
+		# Totals from Operations
 		{ "label": _("Sales Order Sr No"), "fieldname": "sr_no", "fieldtype": "Data", "width": 100 },
 		{ "label": _("Customer Name"), "fieldname": "customer_name", "fieldtype": "Data", "width": 100 },
 		{ "label": _("PO No"), "fieldname": "po_no", "fieldtype": "Data", "width": 100 },
@@ -30,25 +37,22 @@ def get_columns():
 		{ "label": _("Alt Box Label"), "fieldname": "alt_box_label", "fieldtype": "Int", "width": 10 },
 		{ "label": _("Qty"), "fieldname": "qty", "fieldtype": "Int", "width": 50 },
 		{ "label": _("Box Qty"), "fieldname": "box_qty", "fieldtype": "Int", "width": 50 }
+		# Unit Costs
+		# Batch Costs
+		# Facility Costs
 	]
 
 	return columns
 
 def get_data(filters):
 	conditions = ""
-	if filters.get("sales_order"):
-		conditions += " and SOI.parent = '%s'" % (filters.get("sales_order"))
+	if filters.get("item"):
+		conditions += " and BOM.item = '%s'" % (filters.get("item"))
 		
-	if filters.get("sr_no"):
-		conditions += " and SOI.idx = '%s'" % (filters.get("sr_no"))
+	if filters.get("customer"):
+		conditions += " and CUST.name = '%s'" % (filters.get("customer"))
 	
-	box_qty = filters.get("box_qty")
-	if box_qty < 1:
-		box_qty = 1
-		
-	part_qty = filters.get("part_qty")
-	if part_qty < 1:
-		part_qty = 1
+	quote_qtys = filters.get("quote_qtys").split()
 
 	label_detail = frappe.db.sql("""
 			SELECT
@@ -65,13 +69,11 @@ def get_data(filters):
 				I.alt_box_label,
 				SOI.qty
 			FROM
-				`tabSales Order Item` AS SOI
-				INNER JOIN `tabSales Order` AS SO
-					ON SO.name = SOI.parent
-				INNER JOIN `tabItem` AS I
-					ON SOI.item_code = I.name
+				`tabBOM` AS BOM
+				INNER JOIN `tabItem` AS Item
+					ON Item.name = BOM.item
 			WHERE
-				SO.status NOT IN ('Completed', 'Cancelled', 'Closed')
+				BOM.default = 1
 				{conditions}
 
 			GROUP BY SOI.parent

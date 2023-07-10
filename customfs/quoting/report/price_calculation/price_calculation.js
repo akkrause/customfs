@@ -15,7 +15,7 @@ frappe.query_reports["Price Calculation"] = {
 			"fieldtype": "Link",
 			"options": "Customer"
 		}, {
-			"fieldname": "quote_qty",
+			"fieldname": "quote_qtys",
 			"label": __("Quote Quantities"),
 			"fieldtype": "Data",
 			"default": "100",
