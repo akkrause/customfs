@@ -124,7 +124,8 @@ app_license = "MIT"
 # Jinja
 jinja = {
     "methods": [
-        "customfs.utils.data.money_in_words"
+        "customfs.utils.data.money_in_words",
+        "customfs.utils.barcode.encode128"
     ]
 }
 
