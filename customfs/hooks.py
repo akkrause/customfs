@@ -125,10 +125,10 @@ app_license = "MIT"
 jinja = {
     "methods": [
         "customfs.utils.data.money_in_words",
-        "customfs.utils.barcode.encode128"
     ]
 }
 
+# Fixtures
 fixtures = [
 	{"dt": "Custom Field", "filters": [["_user_tags", "like", "%customfs%"]]},
 ]
