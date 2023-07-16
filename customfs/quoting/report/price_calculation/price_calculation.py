@@ -74,14 +74,15 @@ def get_columns():
 
 def get_data(filters):
 	BOM_conditions = ""
+	Cust_conditions = ""
 	if filters.get("item"):
 		BOM_conditions += " and I.item = '%s'" % (filters.get("item"))
 		
-#	if filters.get("customer"):
-#		BOM_conditions += " and CUST.name = '%s'" % (filters.get("customer"))
+	if filters.get("customer"):
+		Cust_conditions += " and CUST.name = '%s'" % (filters.get("customer"))
 	
 	if filters.get("yearly_qty"):
-		yearly_qty = filters.get("yearly_qty").split()
+		yearly_qty = filters.get("yearly_qty")
 
 	if filters.get("quote_qtys"):
 		quote_qtys = filters.get("quote_qtys").split()
@@ -100,6 +101,7 @@ def get_data(filters):
 
 			LIMIT 1""".format(conditions=BOM_conditions))
 			
+	
 	quote = []
 	quote.append([
 		"T",				# Record Type
