@@ -5,12 +5,12 @@
 frappe.query_reports["Price Calculation"] = {
 	"filters": [
 		{
-			"fieldname": "item_code",
+			"fieldname": "item",
 			"label": __("Item"),
 			"fieldtype": "Link",
 			"options": "Item"
 		}, {
-			"fieldname": "cust",
+			"fieldname": "customer",
 			"label": __("Customer"),
 			"fieldtype": "Link",
 			"options": "Customer"
@@ -24,7 +24,7 @@ frappe.query_reports["Price Calculation"] = {
 			"fieldname": "quote_qtys",
 			"label": __("Quote Quantities"),
 			"fieldtype": "Data",
-			"default": "100",
+			"default": "101",
 			"reqd": 1			
 		}
 	]

@@ -130,5 +130,5 @@ jinja = {
 
 # Fixtures
 fixtures = [
-	{"dt": "Custom Field", "filters": [["_user_tags", "like", "%customfs%"]]},
+	{"dt": "Custom Field", "filters": [["module", "in", ["Label Printing", "Quoting"]]]},
 ]
