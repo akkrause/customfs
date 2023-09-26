@@ -120,13 +120,13 @@ def get_labels(filters):
 				SOI.parent,
 				SOI.idx,
 				SOI.item_code,
-				SOI.item_name,
+				LEFT(SOI.item_name, 24) AS item_name,
 				SOI.description,
 				SO.customer_name,
 				SO.po_no,
 				SO.po_date,
 				SOI.delivery_date,
-				SOI.customer_item_code,
+				LEFT(SOI.customer_item_code, 24) AS customer_item_code,
 				I.alt_box_label,
 				SOI.qty
 			FROM
