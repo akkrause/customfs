@@ -207,62 +207,62 @@ def get_data(filters):
 				13.01,				# Building
 				14.01				# Equipment
 			])
-	for qty in quote_qtys:
-		quote.append([
-			"T",						# Record Type
-			qty,						# Quote Quantity
-			1,							# Quote Price
-			BOM[0]["name"],				# BOM Name
-			BOM[0]["item_name"],		# Item Name
-			BOM[0]["description"],		# Description
-			CUST[0]["customer_name"],	# Customer
-			0,							# Commission from customer
-			0.25,						# Margin from customer
-			yearly_qty,					# Yearly Quantity
-			25,							# Labor Rate
-			None,						# Operation
-			None,						# Workstation
-			None,						# Work Instructions
-			BOM[0]["quantity"],			# Quantity per BOM, from BOM
-			101.00,				# Operation Total Cost
-			102.00,				# Operation Material Cost
-			103.00,				# Operation Labor Cost
-			104.00,				# Operation Consumables
-			105.00,				# Operation Overhead
-			"",							# Material 1, From Operation
-			3.01,				# Freight Dim 1, from tabItem
-			0.123,				# Yield 1,  Need yield per material and yield per part quantity.  From operation.
-								# Pieces/Stock Unit or Stock Units/Piece, From Operation
-								# Pieces per operation
-			201.00,				# Material Cost 1, from Item Price for supplier
-			202.00,				# Freight In 1, from Supplier where idx = 1 in `tabItem Supplier`
-								# Scrap 1, From BOM operation
-								# Supplier 1, From Item Price.
-			"",							# Material 2
-			4.01,				# Freight Dim 2
-			0.124,				# Yield 2
-			301.00,				# Material Cost 2
-			302.00, 			# Freight In 2
-								# Scrap 2, From BOM operation
-			"",							# Material 3
-			5.01,				# Freight Dim 3
-			0.125,				# Yield 3
-			401.00,				# Material Cost 3
-			402.00,				# Freight In 3
-								# Scrap 3, From BOM operation
-								# Supplier 3, From Item Price.
-			None,				# Time
-			1,					# Stack
-			6.01,				# Consumables
-			7.01,				# Power
-			8.01,				# Water
-			9.01,				# Administration
-			10.01,				# Setup
-			11.01,				# Shipping Labor
-			12.01,				# Freight Out
-			13.01,				# Building
-			14.01				# Equipment
-		])
+		for qty in quote_qtys:
+			quote.append([
+				"T",						# Record Type
+				qty,						# Quote Quantity
+				1,							# Quote Price
+				BOM[0]["name"],				# BOM Name
+				BOM[0]["item_name"],		# Item Name
+				BOM[0]["description"],		# Description
+				CUST[0]["customer_name"],	# Customer
+				0,							# Commission from customer
+				0.25,						# Margin from customer
+				yearly_qty,					# Yearly Quantity
+				25,							# Labor Rate
+				None,						# Operation
+				None,						# Workstation
+				None,						# Work Instructions
+				BOM[0]["quantity"],			# Quantity per BOM, from BOM
+				101.00,				# Operation Total Cost
+				102.00,				# Operation Material Cost
+				103.00,				# Operation Labor Cost
+				104.00,				# Operation Consumables
+				105.00,				# Operation Overhead
+				"",							# Material 1, From Operation
+				3.01,				# Freight Dim 1, from tabItem
+				0.123,				# Yield 1,  Need yield per material and yield per part quantity.  From operation.
+									# Pieces/Stock Unit or Stock Units/Piece, From Operation
+									# Pieces per operation
+				201.00,				# Material Cost 1, from Item Price for supplier
+				202.00,				# Freight In 1, from Supplier where idx = 1 in `tabItem Supplier`
+									# Scrap 1, From BOM operation
+									# Supplier 1, From Item Price.
+				"",							# Material 2
+				4.01,				# Freight Dim 2
+				0.124,				# Yield 2
+				301.00,				# Material Cost 2
+				302.00, 			# Freight In 2
+									# Scrap 2, From BOM operation
+				"",							# Material 3
+				5.01,				# Freight Dim 3
+				0.125,				# Yield 3
+				401.00,				# Material Cost 3
+				402.00,				# Freight In 3
+									# Scrap 3, From BOM operation
+									# Supplier 3, From Item Price.
+				None,				# Time
+				1,					# Stack
+				6.01,				# Consumables
+				7.01,				# Power
+				8.01,				# Water
+				9.01,				# Administration
+				10.01,				# Setup
+				11.01,				# Shipping Labor
+				12.01,				# Freight Out
+				13.01,				# Building
+				14.01				# Equipment
+			])
 	return quote
 
 
