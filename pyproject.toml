@@ -1,0 +1,9 @@
+[project]
+name = "customfs"
+authors = [
+    { name = "Andrew Krause"}
+]
+description = "Customizations for Foam Surface"
+requires-python = ">=3.10,<3.14"
+readme = "README.md"
+dynamic = ["version"]
