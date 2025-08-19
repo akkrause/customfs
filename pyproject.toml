@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools"]
+
+[project]
+name = "customfs"
+authors = [
+    { name = "Andrew Krause"}
+]
+description = "Customizations for Foam Surface"
+requires-python = ">=3.10"
+readme = "README.md"
+dynamic = ["version"]
+
+[project.urls]
+Repository = "https://github.com/akkrause/customfs.git"
