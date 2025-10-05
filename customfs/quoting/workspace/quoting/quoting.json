@@ -1,4 +1,5 @@
 {
+ "app": "customfs",
  "charts": [],
  "content": "[{\"id\":\"kqELU9_P20\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Quoting</span>\",\"col\":12}},{\"id\":\"9R1YVO6rN4\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}}]",
  "creation": "2023-07-15 23:56:52.043103",
@@ -16,6 +17,7 @@
    "is_query_report": 0,
    "label": "Reports",
    "link_count": 1,
+   "link_type": "DocType",
    "onboard": 0,
    "type": "Card Break"
   },
@@ -27,20 +29,22 @@
    "link_to": "Price Calculation",
    "link_type": "Report",
    "onboard": 0,
+   "report_ref_doctype": "BOM",
    "type": "Link"
   }
  ],
- "modified": "2023-07-15 23:57:54.985153",
+ "modified": "2025-10-01 19:57:55.787329",
  "modified_by": "Administrator",
  "module": "Quoting",
  "name": "Quoting",
  "number_cards": [],
  "owner": "Administrator",
- "parent_page": "Selling",
+ "parent_page": "",
  "public": 1,
  "quick_lists": [],
  "roles": [],
  "sequence_id": 30.0,
  "shortcuts": [],
- "title": "Quoting"
+ "title": "Quoting",
+ "type": "Workspace"
 }
