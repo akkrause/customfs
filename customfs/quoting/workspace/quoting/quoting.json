@@ -8,6 +8,7 @@
  "doctype": "Workspace",
  "for_user": "",
  "hide_custom": 0,
+ "icon": "sell",
  "idx": 0,
  "is_hidden": 0,
  "label": "Quoting",
@@ -33,7 +34,7 @@
    "type": "Link"
   }
  ],
- "modified": "2025-10-01 19:57:55.787329",
+ "modified": "2025-10-06 18:20:21.931503",
  "modified_by": "Administrator",
  "module": "Quoting",
  "name": "Quoting",
